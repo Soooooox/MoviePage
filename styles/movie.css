@@ -154,8 +154,12 @@ img {
   column-gap: .5rem;
   color: var(--first-color);
   font-weight: var(--font-medium);
+  background-color: transparent;
 }
-
+.nav-logo:hover{
+  color: var(--first-color);
+  cursor: pointer;
+}
 .nav-logo i{
   font-size: 1.25rem;
 }
@@ -179,13 +183,16 @@ img {
   display: flex;
   justify-content: space-between;
 }
-
+.nav-list li:hover{
+  color: var(--first-color);
+}
 .nav-link{
   display: flex;
   flex-direction: column;
   color: var(--text-color);
   transition: color .4s;
   align-items: center;
+  background-color: transparent;
 }
 
 .now-nav i,
@@ -202,6 +209,7 @@ img {
 
 .nav-link:hover{
   color: var(--first-color);
+  cursor: pointer;
 }
 
 .nav-actions{
@@ -288,34 +296,41 @@ img {
 }
 
 .row {
-  width: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .column {
-  float: left;
-  width: 100%;
-  padding: 0.5rem 0.5rem;
+  width: 70%;
 }
-
 .movie-card{
   display: flex;
-  align-items: center;
-  flex-direction: column;
-  background-color: var(--container-color);
-  padding: 2rem 2rem 0.2rem;
-  color: var(--text-color);
-  border: 2px solid var(--border-color);
-  transition: border .4s, bachground-color .4s;
+  justify-content: center;
+  padding-top: 5%;
+  padding-bottom: 15%;
 }
-
-.movie-card:hover{
-  border: 2px solid var(--text-color);
+/* 卡片阴影 */
+.movie-cover{
+  margin-top: -1vh;
+  margin-right: -1vh;
+  font-size: 0;
+  box-shadow: -2.6125rem 1.9rem 1.425rem 0 rgb(0 0 0 / 10%), 
+          -1.2825rem 1.1875rem 1.6625rem -0.2375rem rgb(0 0 0 / 20%), 
+          -0.475rem 0.475rem 0.7125rem 0.2375rem rgb(0 0 0 / 10%), 
+          -0.57rem 0.57rem 0.475rem 0 rgb(0 0 0 / 20%),
+          -0.3325rem 0.3325rem 0.38rem 0 rgb(0 0 0 / 10%), 
+          -0.2375rem 0.2375rem 0.2375rem 0 rgb(0 0 0 / 20%), 
+          -0.095rem 0.095rem 0.1425rem 0 rgb(0 0 0 / 30%);
+  filter: drop-shadow(-0.95rem 0.95rem 0.7125rem rgba(0, 0, 0, .65));
+}
+.movie-cover:hover{
+  cursor: pointer;
 }
 
 .movie-img{
   width: 100%;
-  transition: scale .4s;
-  box-shadow: -0.2rem 0.2rem 0.5rem 0.1rem hsla(0, 0%, 0%, 0.267);
+  border-radius: 4px;
 }
 
 .movie-title{
@@ -420,16 +435,6 @@ img {
   .row{
     width: 100%;
   }
-  .movie-card{
-    padding: 2rem 2rem 0.2rem;
-    width: 100%;
-  }
-  
-  .movie-title{
-    font-size: var(--h2-font-size);
-    margin-bottom: .5rem;
-    font-family: var(--body-font);
-  }
 }
 
 @media screen and (max-width:500px){
@@ -444,21 +449,6 @@ img {
   .row{
     width: 100%;
   }
-
-  .column{
-    padding: 1rem 1rem;
-  }
-
-  .movie-card{
-    padding: 2rem 2rem 0.2rem;
-    width: 100%;
-  }
-
-  .movie-title{
-    font-size: var(--h2-font-size);
-    margin-bottom: .5rem;
-    font-family: var(--body-font);
-  }
 }
 /* For medium devices */
 @media screen and (min-width:576px){
@@ -471,18 +461,7 @@ img {
   }
 
   .row{
-    width: 50%;
-  }
-
-  .movie-card{
-    padding: 2rem 2rem 0.2rem;
     width: 100%;
-  }
-
-  .movie-title{
-    font-size: var(--h2-font-size);
-    margin-bottom: .5rem;
-    font-family: var(--body-font);
   }
 }
 @media screen and (min-width:768px){
@@ -495,18 +474,7 @@ img {
   }
 
   .row{
-    width: 33.333%;
-  }
-
-  .movie-card{
-    padding: 2rem 2rem 0.2rem;
-    width: 100%;
-  }
-  
-  .movie-title{
-    font-size: var(--h2-font-size);
-    margin-bottom: .5rem;
-    font-family: var(--body-font);
+    width: 50%;
   }
 }
 /* For large devices */
@@ -535,18 +503,7 @@ img {
   }
 
   .row{
-    width: 33.333%;
-  }
-
-  .movie-card{
-    padding: 2rem 2rem 0.2rem;
-    width: 100%;
-  }
-  
-  .movie-title{
-    font-size: var(--h2-font-size);
-    margin-bottom: .5rem;
-    font-family: var(--body-font);
+    width: 50%;
   }
 }
 @media screen and (min-width:1500px){
@@ -574,18 +531,7 @@ img {
   }
 
   .row{
-    width: 25%;
-  }
-  
-  .movie-card{
-    padding: 2rem 2rem 0.2rem;
-    width: 100%;
-  }
-
-  .movie-title{
-    font-size: var(--h2-font-size);
-    margin-bottom: .5rem;
-    font-family: var(--body-font);
+    width: 33.33333%;
   }
 }
 @media screen and (min-width:1920px){
@@ -613,17 +559,6 @@ img {
   }
 
   .row{
-    width: 20%;
-  }
-  
-  .movie-card{
-    padding: 2rem 2rem 0.2rem;
-    width: 100%;
-  }
-
-  .movie-title{
-    font-size: var(--h2-font-size);
-    margin-bottom: .5rem;
-    font-family: var(--body-font);
+    width: 33.3333%;
   }
 }

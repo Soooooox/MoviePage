@@ -71,51 +71,109 @@ sr.reveal('.movie-container')
 sr.reveal('.movie-container',{delay: 300})
 
 /*=============== CREATE HTML ===============*/
+/*=============== CREATE HTML ===============*/
 const IMG_PATH = './images/cover/';
 
+// 固定元素
 const container = document.getElementById("movie-container");
 const detailClose = document.getElementById('detail-close')
 const detailContent = document.getElementById('movie-detail')
 const info = document.getElementById('info')
 
-fetch('./db/animation.json')
-  .then(response => response.json())
-  .then(data => {
-    // console.log(data);
-    data.forEach(element => {
-      if (element.watching_status == "观看中") {
+// 进入书的主页刷新
+change_moviepage();
+// 返回主界面
+const homebutton = document.getElementById('home-button');
 
-        const div_row = document.createElement('div');
-        div_row.setAttribute('class', 'row');
-		    div_row.setAttribute('id', 'row');
+homebutton.addEventListener(
+  'click', () =>{
+    window.location.href = "https://soooooox.github.io/HomePage/"
+  }
+)
+// 创建卡片函数
+function createCard(element){
+	const div_row = document.createElement('div');
+	div_row.setAttribute('class', 'row');
 
-        const div_column = document.createElement('div');
-        div_column.setAttribute('class', 'column');
+	const div_column = document.createElement('div');
+	div_column.setAttribute('class', 'column');
 
-        const div_card = document.createElement('div');
-        div_card.setAttribute('class', 'movie-card');
-		    div_card.setAttribute('id', 'movie-card');
+	const div_card = document.createElement('div');
+	div_card.setAttribute('class', 'movie-card');
 
-        const center = document.createElement('center');
+	const movie_cover = document.createElement('div');
+	movie_cover.setAttribute('class', 'movie-cover');
 
-        const image = document.createElement('img');
-        image.setAttribute('class', 'movie-img');
-        image.setAttribute('id', 'img');
+	const image = document.createElement('img');
+	image.setAttribute('class', 'movie-img');
+	image.src = IMG_PATH + element.img_path;  
 
-        const title = document.createElement('h2');
-        title.setAttribute('class', 'movie-title');
-
-        title.innerHTML = `${element.title}`;
-        image.src = IMG_PATH + element.img_path;
-
-        container.appendChild(div_row);
-        div_row.appendChild(div_column);
-        div_column.appendChild(div_card);
-        div_card.appendChild(center);
-        center.appendChild(image);
-        div_card.appendChild(title);
-
-
+	container.appendChild(div_row);
+	div_row.appendChild(div_column);
+	div_column.appendChild(div_card);
+	div_card.appendChild(movie_cover);
+	movie_cover.appendChild(image);
+	return div_card;
+}
+// 刷新页面
+function changepage(db_path,page_name){
+	const sectiontitle = document.getElementById('section-title');
+	container.innerHTML = '';
+	sectiontitle.innerText = page_name;
+	fetch(db_path)
+		.then(response => response.json())
+		.then(data => {
+			data.forEach(element => {
+				div_card = createCard(element);
+				animationDetail(element,div_card);
+			});
+	})
+}
+// 刷新影视的主页
+function changewatching(db_path,method){
+	fetch(db_path)
+		.then(response => response.json())
+		.then(data => {
+		data.forEach(element => {
+			if (element.watching_status == "观看中") {
+				div_card = createCard(element);
+				method(element,div_card);
+			}
+		});
+		})
+}
+function change_moviepage(){
+	const sectiontitle = document.getElementById('section-title');
+	container.innerHTML = '';
+	sectiontitle.innerText = "Watching......";
+	changewatching('./db/animation.json',animationDetail);
+	changewatching('./db/theater.json',animationDetail);
+	changewatching('./db/movie.json',animationDetail);
+	changewatching('./db/tv-serial.json',animationDetail);
+	changewatching('./db/playlet.json',animationDetail);
+}
+// 刷新动漫页面
+function change_animation(){
+	changepage('./db/animation.json',"动漫");
+}
+// 刷新剧场版页面
+function change_theater(){
+	changepage('./db/theater.json',"剧场版");
+}
+// 刷新电影页面
+function change_movie(){
+	changepage('./db/movie.json',"电影");
+}
+// 刷新电视剧页面
+function change_tv(){
+	changepage('./db/tv-serial.json',"电视剧");
+}
+// 刷新短剧页面
+function change_playlet(){
+	changepage('./db/playlet.json',"短剧");
+}
+// 漫画信息
+function animationDetail(element,div_card){
 		/* Detail show */
 		// 信息
 		const infotitle = document.createElement('h2');
@@ -195,27 +253,9 @@ fetch('./db/animation.json')
 		if(detailClose){
 			detailClose.addEventListener('click', () =>{
 				detailContent.classList.remove('show-detail');
-				info.removeChild(infotitle);
-				info.removeChild(totalep);
-				info.removeChild(watchingep);
-        info.appendChild(publishedseason);
-				info.removeChild(classf);
-				info.removeChild(type);
-				info.removeChild(watchingstatus);
-				info.removeChild(evaluate);
-				info.removeChild(comment);
-        detailContent.classList.remove('show-detail');
+				info.innerHTML = '';
 			})
 		}
-    };
-	 
-    });
-  })
+}
 
-const homebutton = document.getElementById('home-button');
-
-homebutton.addEventListener(
-  'click', () =>{
-    window.location.href = "https://soooooox.github.io/HomePage/"
-  })
 /*=============== HOME SWIPER ===============*/
