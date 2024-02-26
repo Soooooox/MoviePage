@@ -8,13 +8,13 @@
 
   /*========== Colors ==========*/
   /*Color mode HSL(hue, saturation, lightness)*/
-  --first-color: hsl(230, 62%, 56%);
-  --title-color: hsl(230, 70%, 16%);
-  --text-color: hsl(230, 16%, 45%);
+  --first-color: #6c63ff;
+  --title-color: #5b0dfc;
+  --text-color: #5b0dfc;
   --border-color: hsl(230, 50%, 90%);
   --white-color: hsl(0, 0%, 100%);
-  --body-color: hsl(230, 100%, 96%);
-  --container-color: hsl(230, 100%, 97%);
+  --body-color: #161617;
+  --container-color: #161617;
 
   /*========== Font and typography ==========*/
   /*.5rem = 8px | 1rem = 16px ...*/
@@ -309,20 +309,7 @@ img {
   justify-content: center;
   padding-top: 5%;
   padding-bottom: 15%;
-}
-/* 卡片阴影 */
-.movie-cover{
-  margin-top: -1vh;
-  margin-right: -1vh;
-  font-size: 0;
-  box-shadow: -2.6125rem 1.9rem 1.425rem 0 rgb(0 0 0 / 10%), 
-          -1.2825rem 1.1875rem 1.6625rem -0.2375rem rgb(0 0 0 / 20%), 
-          -0.475rem 0.475rem 0.7125rem 0.2375rem rgb(0 0 0 / 10%), 
-          -0.57rem 0.57rem 0.475rem 0 rgb(0 0 0 / 20%),
-          -0.3325rem 0.3325rem 0.38rem 0 rgb(0 0 0 / 10%), 
-          -0.2375rem 0.2375rem 0.2375rem 0 rgb(0 0 0 / 20%), 
-          -0.095rem 0.095rem 0.1425rem 0 rgb(0 0 0 / 30%);
-  filter: drop-shadow(-0.95rem 0.95rem 0.7125rem rgba(0, 0, 0, .65));
+  /* background-color: #161617; */
 }
 .movie-cover:hover{
   cursor: pointer;
@@ -330,7 +317,8 @@ img {
 
 .movie-img{
   width: 100%;
-  border-radius: 4px;
+  border-radius: 1rem;
+  /* border: 2px solid #2f2e41; */
 }
 
 .movie-title{
@@ -559,6 +547,6 @@ img {
   }
 
   .row{
-    width: 33.3333%;
+    width: 25%;
   }
 }

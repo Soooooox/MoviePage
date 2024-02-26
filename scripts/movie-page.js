@@ -179,7 +179,11 @@ function animationDetail(element,div_card){
 		const infotitle = document.createElement('h2');
 		infotitle.setAttribute('class', 'title');
 		infotitle.innerHTML = `${element.title}`;
-		
+
+		const intro = document.createElement('div');
+		intro.setAttribute('class', 'intro');
+		intro.innerHTML = "剧情简介: "+`${element.intro}`;
+
 		const totalep = document.createElement('div');
 		totalep.setAttribute('class', 'total-ep');
 		totalep.setAttribute('class', 'detail');
@@ -236,6 +240,7 @@ function animationDetail(element,div_card){
 		if(div_card){
 			div_card.addEventListener('click', () =>{
 				info.appendChild(infotitle);
+				info.appendChild(intro);
 				info.appendChild(totalep);
 				info.appendChild(watchingep);
         info.appendChild(publishedseason);
